@@ -12,12 +12,12 @@ public class DeleteMethod {
         try (Connection connection = ConnectionToDB.connectionToDB();
              Statement statement = connection.createStatement()) {
 
-            if(tableName.equals("Issuing") || tableName.equals("Service")){
+            if(tableName.equals("Issuing")){
                 ResultSet resultSet = statement.executeQuery("SELECT vin, date_return FROM \"" + tableName +"\" WHERE " + column + " = '" + value + "'");
                 String date_return = null;
 
                 while(resultSet.next()){
-                    if(tableName.equals("Issuing")){
+                    if(tableName.equals("Issuing") || tableName.equals("Service")){
                         date_return = resultSet.getString("date_return");
                     } else {
                         date_return = resultSet.getString("service_end_date");

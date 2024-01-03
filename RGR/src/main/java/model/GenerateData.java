@@ -10,20 +10,6 @@ public class GenerateData {
         try(Connection connection = ConnectionToDB.connectionToDB();
             Statement statement = connection.createStatement()) {
 
-            ResultSet resultSet = statement.executeQuery("select max(№_drivers_license) as max_num from \"Employee\"");
-
-            int maxNum = 1000000;
-
-            while (resultSet.next()) {
-                maxNum = resultSet.getInt("max_num") + 1;
-            }
-
-            if(maxNum == 0){
-                maxNum = 1000000;
-            }
-
-            int limitNum = maxNum + amount;
-
             String query = "insert into \"Employee\" (№_drivers_license, first_name, last_name, surname)\n" +
                     "select \n" +
                     "row_number() OVER () as №_drivers_license, \n" +

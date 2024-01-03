@@ -2,6 +2,7 @@ package view;
 
 import controller.Controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
@@ -71,6 +72,19 @@ public class Menu {
 
         return data;
     }
+
+    public List<String> drawAddDataHibernate(List<String> columnNames){
+        List<String> data = new ArrayList<>();
+        System.out.println("\nEnter data for variables:");
+
+        for (String columnName : columnNames) {
+            System.out.print(columnName + " - ");
+            String str = scanner.next();
+            data.add(str);
+        }
+
+        return data;
+    }
     public int chooseColumn(List<String> columnNames, String text){
         System.out.println(" ");
         for(int i = 0; i < columnNames.size(); i++){
@@ -92,8 +106,14 @@ public class Menu {
         return result;
     }
     public String valueForColumnUpdate(String columnName){
+        Scanner scanner4 = new Scanner(System.in);
         System.out.print("\nEnter value: \n" + columnName + " - ");
-        return scanner.nextLine();
+        return scanner4.nextLine();
+    }
+    public String valuePrimaryKey(){
+        Scanner scanner4 = new Scanner(System.in);
+        System.out.print("\nEnter value of Primary Key:");
+        return scanner4.nextLine();
     }
     public int amountOfGenerateData(){
         Scanner scanner2 = new Scanner(System.in);
